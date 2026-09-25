@@ -1,0 +1,59 @@
+{
+  "name": "hotdog-detector",
+  "private": true,
+  "version": "0.2.1",
+  "type": "module",
+  "displayName": "Hot Dog or Not Hot Dog",
+  "description": "Classify photos with a GoatTown vision agent.",
+  "scripts": {
+    "prebuild": "node scripts/compile-goattown-config.mjs",
+    "dev": "vite",
+    "build": "tsc -b && vite build && apps build",
+    "package": "apps package",
+    "deploy": "cribl-app-deploy",
+    "inspect:pack": "cribl-app-inspect",
+    "release:evidence": "cribl-app-release-evidence",
+    "security:static": "cribl-app-security",
+    "lint": "eslint . --max-warnings=0",
+    "verify": "npm run lint && npm test && tsc -b",
+    "audit": "npm audit --omit=dev --audit-level=low && npm audit --audit-level=high",
+    "preview": "vite preview",
+    "test": "vitest run --passWithNoTests",
+    "test:e2e": "npx playwright test"
+  },
+  "dependencies": {
+    "@capra/core": "^1.15.0",
+    "@capra/theme": "^1.6.0",
+    "@criblio/app-utils": "^0.8.9",
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "d3-time-format": "^4.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@cribl/apps": "1.1.0",
+    "@criblio/app-tooling": "^0.2.3",
+    "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "playwright-core": "^1.45.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.0",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "cribl": {
+    "type": "app",
+    "createAppScriptVersion": "1.1.0"
+  }
+}

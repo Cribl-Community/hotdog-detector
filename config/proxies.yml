@@ -1,0 +1,24 @@
+# GoatTown service requests use the app connection's injected credential.
+goattown.lab.cribl.io:
+  timeout: 65000
+  paths:
+    allowlist:
+      - /protocol
+      - /agents
+      - /investigations
+      - /configurations
+  headers:
+    inject:
+      Authorization: "'Bearer ' + kv.goattownEmbedToken"
+
+44-225-69-19.sslip.io:
+  timeout: 65000
+  paths:
+    allowlist:
+      - /protocol
+      - /agents
+      - /investigations
+      - /configurations
+  headers:
+    inject:
+      Authorization: "'Bearer ' + kv.goattownEmbedToken"
