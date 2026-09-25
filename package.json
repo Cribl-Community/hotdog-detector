@@ -9,7 +9,7 @@
     "prebuild": "node scripts/compile-goattown-config.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build && apps build",
-    "package": "apps package",
+    "package": "npm run build && cribl-app-package",
     "deploy": "cribl-app-deploy",
     "inspect:pack": "cribl-app-inspect",
     "release:evidence": "cribl-app-release-evidence",

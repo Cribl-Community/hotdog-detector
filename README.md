@@ -56,8 +56,17 @@ npm test           # Vitest  (wire folding, verdict parsing, observer, KV keys)
 npm run lint       # ESLint, --max-warnings=0
 npm run verify     # lint + tests + tsc -b
 npm run build      # tsc -b && vite build && apps build
-npm run package -- --version X.Y.Z
+npm run package    # build, then pack to build/<name>-<version>.tgz
+npm run release:evidence  # inspect that archive (what CI gates on)
 ```
+
+`npm run package` uses `cribl-app-package`, the framework's canonical packer: it ships the
+built assets plus `config/proxies.yml`. It takes the version straight from `package.json`
+(bump it deliberately — there is no auto-bump), and it deliberately leaves the root
+`README.md` out of the archive, because the packer in `@cribl/apps` copies that file into
+`README.md` in the archive while `release:evidence` rejects any file that is not
+`package.json`, a `default/*.yml` config or a `static/` asset — which fails CI. CI itself
+runs `verify`, `security:static`, `audit`, `package`, then `release:evidence`.
 
 Deployment from GoatTown is approval-gated; the pack reports its version, and the installed
 app can be inspected with `GET /api/v1/apps/hotdog-detector`.
